@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Karla:400,700');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+
+$ff1: 'Karla', sans-serif;
+$ff2: 'Libre Baskerville', serif;
+
+body {
+	font-family: $ff1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.btn,
+.link,
+input,
+select,
+textarea {
+	font-family: $ff1;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: $ff2;
+	font-weight: 400;
+	color: color(black-light);
+	margin: 0 0 space(3);
+}
+
+p {
+	margin: 0 0 space(3);
+}
+
+a {
+	color: color(primary);
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
