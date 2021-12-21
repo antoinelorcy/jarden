@@ -1,14 +1,18 @@
 <template>
-	<g-link :to="'/grower/'+slug" class="grower-item">
+	<g-link :to="grower.path" class="grower-item">
 		<div class="gi__image">
-			<g-image :src="imageSrc" width="200" />
+			<g-image :src="(grower.thumbnail && grower.thumbnail.url) || ''" width="200" />
 		</div>
-		<h4>{{ name }}</h4>
+		<h4>{{ grower.name }}</h4>
 		<div class="gi__footer display-flex">
-			<Icon v-if="canShip" class="gi__footer-item" name="ship" :size="15" />
-			<Icon v-if="canSell" class="gi__footer-item" name="cart" :size="15" />
+			<Tooltip v-if="grower.canDeliver" content="Livraison à domicile" class="gi__footer-item">
+				<Icon name="ship" :size="15" />
+			</Tooltip>
+			<Tooltip v-if="grower.canSell" content="Vente en directe sur place" class="gi__footer-item">
+				<Icon  name="cart" :size="15" />
+			</Tooltip>
 			<span class="gi__footer-item display-flex align-center">
-				<Icon name="pin" :size="15" /> <small>{{ location }}</small>
+				<Icon name="pin" :size="15" /> <small>{{ grower.city.name }}</small>
 			</span>
 		</div>
 	</g-link>
@@ -17,12 +21,7 @@
 <script>
 export default {
 	props: {
-		imageSrc: String,
-		name: String,
-		location: String,
-		canShip: Boolean,
-		canSell: Boolean,
-		slug: String
+		grower: Object
 	}
 }
 </script>

@@ -1,25 +1,21 @@
 <template>
 	<div class="grower-sidebar">
 		<Link class="gs__back" icon="arrow-left" is-icon-prefix label="Retour à la liste" @click="$router.back()" />
-		<g-image :src="image" class="gs__image m--b-4" width="300" />
-		<h1>{{ title }}</h1>
-		<p class="m--b-6">
-			{{ description  }}
-		</p>
+		<g-image :src="grower.thumbnail.url" class="gs__image m--b-4" width="300" />
 		
-		<div v-if="canSell" class="display-flex m--b-2">
+		<div v-if="grower.canSell" class="display-flex m--b-2">
 			<Icon name="cart" class="m--r-2" /> Vente en directe sur place
 		</div>
 		
-		<div v-if="canShip" class="display-flex m--b-2">
+		<div v-if="grower.canDeliver" class="display-flex m--b-2">
 			<Icon name="ship" class="m--r-2" /> Livraison à domicile
 		</div>
 
 		<div class="m--t-6">
-			<div v-if="email">
+			<div v-if="grower.email">
 				<Button icon="email" label="Envoyer un message" class="m--b-2" />
 			</div>
-			<div v-if="phone">
+			<div v-if="grower.phone">
 				<Button icon="phone" fill="hollow" label="Voir le numéro" />
 			</div>
 		</div>
@@ -29,13 +25,7 @@
 <script>
 export default {
 	props: {
-		image: String,
-		title: String,
-		description: String,
-		canSell: Boolean,
-		canShip: Boolean,
-		email: String,
-		phone: String
+		grower: Object
 	}
 }
 </script>

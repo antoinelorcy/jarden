@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { debounce } from 'lodash-es';
 import Header from '~/components/Header';
 
 export default {
@@ -14,11 +15,16 @@ export default {
   },
 
   mounted () {
-    window.addEventListener('resize', this.onResize, false);
+    this.detectSmallWindow();
+    window.addEventListener('resize', this.debounceResize);
   },
 
   methods: {
-    onResize () {
+    debounceResize: debounce(function () {
+			this.detectSmallWindow();
+    }, 50),
+  
+    detectSmallWindow () {
       this.$store.commit('detectSmallWindow', window.innerWidth < 1024);
     }
   }

@@ -14,6 +14,7 @@ import Radio from '~/components/Radio.vue'
 import Input from '~/components/Input.vue'
 import Textarea from '~/components/Textarea.vue'
 import Modal from '~/components/Modal.vue'
+import Tooltip from '~/components/Tooltip.vue'
 
 export default function (Vue, { router, head, isClient, appOptions }) {
   // Layouts
@@ -29,6 +30,7 @@ export default function (Vue, { router, head, isClient, appOptions }) {
   Vue.component('Input', Input)
   Vue.component('Textarea', Textarea)
   Vue.component('Modal', Modal)
+  Vue.component('Tooltip', Tooltip)
 
   // Vuex store
   Vue.use(Vuex);

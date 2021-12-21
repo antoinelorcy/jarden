@@ -8,32 +8,22 @@
 	>
 		<div class="f__head display-flex align-center justify-between">
 			<h3 :style="$store.state.isSmallWindow && {opacity: 0}">Filtres</h3>
-			<Link label="Réinitialiser les filtres" color="danger" />
+			<Link label="Réinitialiser les filtres" color="danger" @click="$emit('reset')" />
 		</div>
 
 		<div class="f__section">
 			<h4>Localisation</h4>
-			<Radio label="Toute la France" />
-			<Radio label="Bretagne" />
-			<Radio label="Pays de la Loire" />
-			<Radio label="Normandie" />
+			<Checkbox v-for="region in regions" :key="region.id" :label="region.name" v-model="region.checked"  />
 		</div>
 
 		<div class="f__section">
-			<h4>Par produits</h4>
-			<Checkbox label="Fruits" />
-			<Checkbox label="Legumes" />
-			<Checkbox label="Viandes" />
-			<Checkbox label="Pains et vienoiseries" />
-			<Checkbox label="Boissons" />
-			<Checkbox label="Plantes et fleurs" />
+			<h4>Par catégories</h4>
+			<Checkbox v-for="category in categories" :key="category.id" :label="category.name" v-model="category.checked"  />
 		</div>
 
 		<div class="f__section">
 			<h4>Filtrer par</h4>
-			<Checkbox label="Vente directe sur place" />
-			<Checkbox label="Livraison à domicile" />
-			<Checkbox label="Panier JARDEN*" />
+			<Checkbox v-for="filter in otherFilters" :key="filter.key" :label="filter.name" v-model="filter.checked"  />
 		</div>
 		
 		<div class="text-align--right">
@@ -45,7 +35,10 @@
 <script>
 export default {
 	props: {
-		mobileModalVisible: Boolean
+		mobileModalVisible: Boolean,
+		categories: Array,
+		regions: Array,
+		otherFilters: Array
 	}
 }
 </script>

@@ -2,12 +2,16 @@
   "name": "site",
   "private": true,
   "scripts": {
+    "serve": "yarn install && yarn build:icons && yarn develop",
     "build": "gridsome build",
     "build:icons": "node build/icons.js",
     "develop": "gridsome develop",
     "explore": "gridsome explore"
   },
   "dependencies": {
+    "@gridsome/source-strapi": "^0.1.0",
+    "@popperjs/core": "^2.4.0",
+    "axios": "^0.19.2",
     "faker": "^4.1.0",
     "gridsome": "^0.7.0",
     "lodash-es": "^4.17.15",

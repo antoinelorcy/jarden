@@ -1,13 +1,19 @@
 <template>
   <Layout>
-    <Hero v-if="!$store.state.isSmallWindow" :custom-image="grower.image" />
+    <Hero v-if="!$store.state.isSmallWindow" :custom-image="grower.cover && grower.cover.url" />
     <TwoCols class="inner-width">
       <!-- <Filters slot="left" /> -->
-	    <GrowerSidebar v-bind="sidebarProps" slot="left" />
+	    <GrowerSidebar :grower="grower" slot="left" />
       <template slot="right">
-        <div class="p--4">
-        {{ $context }}
-      	{{ $page.grower }}
+        <div class="p--5">
+          <h1>{{ grower.name }}</h1>
+          <div class="m--b-4" v-html="grower.description"></div>
+          <div class="m--b-4">
+            Horaires: {{ grower.openingHours }}
+          </div>
+          <div class="m--b-2">
+            Map: {{ grower.adress }}
+          </div>
         </div>
       </template>
     </TwoCols>
@@ -16,13 +22,27 @@
 
 <page-query>
 query ($id: ID!) {
-  grower: growers(id: $id) {
+  grower: strapiGrowers(id: $id) {
     name
-    slug
-	  image
-    address
-    city
-    canShip
+    description
+    adress
+    phone
+    email
+    openingHours {
+      Day
+      Open
+      Hours
+    }
+	  thumbnail {
+      url
+    }
+    cover {
+      url
+    }
+    city {
+      name
+    }
+    canDeliver
     canSell
   }
 }
